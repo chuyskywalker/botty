@@ -26,15 +26,15 @@ THE SOFTWARE.
 package main
 
 import (
+	"bytes"
 	"encoding/csv"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"os/exec"
 	"strings"
-	"bytes"
-	"math/rand"
 )
 
 func main() {
@@ -56,10 +56,10 @@ func main() {
 
 		// see if we're mentioned
 		if m.Type == "message" {
-    		fmt.Printf("message: %+v\n", m)
+			fmt.Printf("message: %+v\n", m)
 			if strings.Index(m.Text, "<@"+id+">") != -1 && strings.Index(m.Text, " sf ") != -1 {
 				// if so try to parse if
-				
+
 				cmd := exec.Command("/bin/ls", "-alh")
 				var out bytes.Buffer
 				cmd.Stdout = &out
@@ -73,13 +73,13 @@ func main() {
 			}
 			if strings.Index(m.Text, "<@"+id+">") != -1 && strings.HasPrefix(m.Text, "thank") {
 				reasons := []string{
-				    "No problem",
-				    "I live to serve",
-				    "T'was my pleasure",
-				    "ACKNOWLEDGED",
-				    "But of course",
-				    "It was nothin'",
-				    "Any time",
+					"No problem",
+					"I live to serve",
+					"T'was my pleasure",
+					"ACKNOWLEDGED",
+					"But of course",
+					"It was nothin'",
+					"Any time",
 				}
 				n := rand.Int() % len(reasons)
 				m.Text = fmt.Sprintf("%s, <@%s>!\n", reasons[n], m.User)

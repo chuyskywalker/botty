@@ -96,12 +96,12 @@ func slackStart(token string) (wsurl, id string, err error) {
 // }
 
 type Message struct {
-	Id      uint64  `json:"id"`
-	Type    string  `json:"type"`
-	Channel string  `json:"channel"`
-	User    string  `json:"user"`
-	Text    string  `json:"text"`
-	Ts      string  `json:"ts"`
+	Id      uint64 `json:"id"`
+	Type    string `json:"type"`
+	Channel string `json:"channel"`
+	User    string `json:"user"`
+	Text    string `json:"text"`
+	Ts      string `json:"ts"`
 }
 
 func getMessage(ws *websocket.Conn) (m Message, err error) {
